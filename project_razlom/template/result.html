@@ -22,39 +22,39 @@
     <dl class="data">
       <div>
         <dt>Имя</dt>
-        <dd id="name">@name@</dd>
+        <dd id="name">{{.Name}}</dd>
       </div>
 
       <div class="row">
         <div>
           <dt>Возраст</dt>
-          <dd id="age">@age@</dd>
+          <dd id="age">{{.Age}}</dd>
         </div>
         <div>
           <dt>Город</dt>
-          <dd id="city">@city@</dd>
+          <dd id="city">{{.City}}</dd>
         </div>
       </div>
 
       <div>
         <dt>Пол</dt>
-        <dd id="gender">@gender@</dd>
+        <dd id="gender">{{if eq .Gender "f"}}Женский{{else}}Мужской{{end}}</dd>
       </div>
 
       <div class="row">
         <div>
           <dt>Рост, см</dt>
-          <dd id="height">@height@</dd>
+          <dd id="height">{{.Height}}</dd>
         </div>
         <div>
           <dt>Вес, кг</dt>
-          <dd id="weight">@weight@</dd>
+          <dd id="weight">{{.Weight}}</dd>
         </div>
       </div>
 
       <div>
         <dt>О себе</dt>
-        <dd id="about" class="about">@about@</dd>
+        <dd id="about" class="about">{{.About}}</dd>
       </div>
     </dl>
 

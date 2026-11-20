@@ -1,15 +1,19 @@
 package main
 
 import (
-	"html"
+	"fmt"
+	"html/template"
+	"log"
 	"net/http"
-	"os"
-	"strings"
+	"projectrazlom/models"
+	"projectrazlom/storage"
 
 	"github.com/labstack/echo/v4"
 )
 
 func main() {
+	ankets := []models.Anketa{}
+
 	e := echo.New()
 
 	e.Static("/", "static")
@@ -18,38 +22,39 @@ func main() {
 		return c.File("template/anketa-short.html")
 	})
 
+	tmpl := template.Must(template.ParseFiles("template/result.html"))
+
 	e.POST("/res", func(c echo.Context) error {
-		name := c.FormValue("name")
-		age := c.FormValue("age")
-		city := c.FormValue("city")
-		gender := c.FormValue("gender")
-		height := c.FormValue("height")
-		weight := c.FormValue("weight")
-		about := c.FormValue("about")
-
-		if gender == "f" {
-			gender = "Женский"
-		} else {
-			gender = "Мужской"
+		a := models.Anketa{
+			ID:     len(ankets) + 1,
+			Name:   c.FormValue("name"),
+			Age:    c.FormValue("age"),
+			City:   c.FormValue("city"),
+			Gender: c.FormValue("gender"),
+			Height: c.FormValue("height"),
+			Weight: c.FormValue("weight"),
+			About:  c.FormValue("about"),
 		}
 
-		file, err := os.ReadFile("template/result.html")
-		if err != nil {
-			return err
-		}
+		ankets = append(ankets, a)
+		storage.SavedAnket(ankets)
+		fmt.Println(ankets)
 
-		page := string(file)
-
-		page = strings.ReplaceAll(page, "@name@", html.EscapeString(name))
-		page = strings.ReplaceAll(page, "@age@", html.EscapeString(age))
-		page = strings.ReplaceAll(page, "@city@", html.EscapeString(city))
-		page = strings.ReplaceAll(page, "@gender@", gender)
-		page = strings.ReplaceAll(page, "@height@", html.EscapeString(height))
-		page = strings.ReplaceAll(page, "@weight@", html.EscapeString(weight))
-		page = strings.ReplaceAll(page, "@about@", about)
-
-		return c.HTML(http.StatusOK, page)
+		return tmpl.Execute(c.Response(), a)
 	})
 
-	e.Logger.Fatal(e.Start(":8080"))
+	e.GET("/", func(c echo.Context) error {
+		return c.String(200, "Сервер работает!")
+	})
+
+	e.GET("/exit", func(c echo.Context) error {
+		go e.Close()
+		return c.String(200, "сервер закрыт")
+	})
+
+	err := e.Start(":8080")
+
+	if err != nil && err != http.ErrServerClosed {
+		log.Println(err)
+	}
 }
