@@ -1,0 +1,228 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  background: #f3f2fb;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  color: #2c2c2a;
+}
+
+/* Карточка */
+form,
+.card {
+  width: 100%;
+  max-width: 440px;
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(83, 74, 183, 0.15);
+}
+
+/* Шапка */
+header {
+  padding: 24px;
+  background: #534ab7;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 500;
+  color: #eeedfe;
+}
+
+header p {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: #cecbf6;
+}
+
+/* Основная часть */
+main {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Подписи и поля */
+label {
+  display: block;
+  font-size: 13px;
+  color: #5f5e5a;
+}
+
+input[type="text"],
+input[type="number"],
+textarea {
+  display: block;
+  width: 100%;
+  margin-top: 6px;
+  padding: 10px 12px;
+  font: inherit;
+  font-size: 15px;
+  color: #2c2c2a;
+  background: #ffffff;
+  border: 1px solid #d3d1c7;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+textarea {
+  min-height: 72px;
+  resize: none;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #534ab7;
+  box-shadow: 0 0 0 3px rgba(83, 74, 183, 0.18);
+}
+
+::placeholder {
+  color: #b4b2a9;
+}
+
+/* Два поля рядом */
+.row {
+  display: flex;
+  gap: 12px;
+}
+
+.row label {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Пол */
+.gender {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+}
+
+.gender p {
+  width: 100%;
+  margin: 0;
+  font-size: 13px;
+  color: #5f5e5a;
+}
+
+.gender label {
+  flex: 1;
+  cursor: pointer;
+}
+
+.gender input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.gender span {
+  display: block;
+  padding: 10px;
+  text-align: center;
+  font-size: 14px;
+  color: #5f5e5a;
+  border: 1px solid #d3d1c7;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+
+.gender input:checked + span {
+  background: #eeedfe;
+  border: 1.5px solid #534ab7;
+  color: #3c3489;
+  font-weight: 500;
+}
+
+.gender input:focus-visible + span {
+  box-shadow: 0 0 0 3px rgba(83, 74, 183, 0.18);
+}
+
+/* Кнопка */
+button {
+  width: 100%;
+  padding: 12px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  color: #eeedfe;
+  background: #534ab7;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+button:hover {
+  background: #3c3489;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/* Страница с результатом */
+.data {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.data dt {
+  font-size: 13px;
+  color: #5f5e5a;
+}
+
+.data dd {
+  margin: 6px 0 0;
+  padding: 10px 12px;
+  font-size: 15px;
+  color: #2c2c2a;
+  background: #f3f2fb;
+  border-radius: 8px;
+}
+
+.data .row > div {
+  flex: 1;
+  min-width: 0;
+}
+
+.data .about {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.back {
+  display: block;
+  padding: 12px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 500;
+  color: #3c3489;
+  text-decoration: none;
+  background: #eeedfe;
+  border-radius: 10px;
+  transition: background 0.2s;
+}
+
+.back:hover {
+  background: #cecbf6;
+}
+
+@media (max-width: 380px) {
+  .row {
+    flex-direction: column;
+  }
+}
