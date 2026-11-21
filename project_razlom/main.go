@@ -14,6 +14,16 @@ import (
 func main() {
 	ankets := []models.Anketa{}
 
+
+	
+
+
+	ankets, err := storage.LoadAnkets()
+	if err != nil {
+		fmt.Println(err)
+		
+	}
+
 	e := echo.New()
 
 	e.Static("/", "static")
@@ -37,8 +47,8 @@ func main() {
 		}
 
 		ankets = append(ankets, a)
-		storage.SavedAnket(ankets)
 		fmt.Println(ankets)
+		storage.SavedAnket(ankets)
 
 		return tmpl.Execute(c.Response(), a)
 	})
@@ -52,7 +62,7 @@ func main() {
 		return c.String(200, "сервер закрыт")
 	})
 
-	err := e.Start(":8080")
+	err = e.Start(":8080")
 
 	if err != nil && err != http.ErrServerClosed {
 		log.Println(err)
