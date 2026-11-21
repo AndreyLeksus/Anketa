@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+  <meta charset="utf-8">
+  <title>Анкета</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style-short.css">
+</head>
+
+<body>
+
+<form action="/res" method="post">
+
+  <header>
+    <h1>Расскажи о себе</h1>
+    <p>Это займёт меньше минуты</p>
+  </header>
+
+  <main>
+
+    <label>Имя
+      <input type="text" name="name" placeholder="Например, Алексей">
+    </label>
+
+    <div class="row">
+      <label>Возраст
+        <input type="number" name="age" placeholder="18">
+      </label>
+      <label>Город
+        <input type="text" name="city" placeholder="Москва">
+      </label>
+    </div>
+
+    <div class="gender">
+      <p>Пол</p>
+      <label>
+        <input type="radio" name="gender" value="m" checked>
+        <span>Мужской</span>
+      </label>
+      <label>
+        <input type="radio" name="gender" value="f">
+        <span>Женский</span>
+      </label>
+    </div>
+
+    <div class="row">
+      <label>Рост, см
+        <input type="number" name="height" placeholder="175">
+      </label>
+      <label>Вес, кг
+        <input type="number" name="weight" placeholder="70">
+      </label>
+    </div>
+
+    <label>О себе
+      <textarea name="about" placeholder="Пара слов о себе"></textarea>
+    </label>
+
+    <button type="submit">Отправить анкету</button>
+
+  </main>
+
+</form>
+
+</body>
+
+</html>
